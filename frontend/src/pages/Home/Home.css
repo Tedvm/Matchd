@@ -59,7 +59,7 @@ ul li {
   width: 90%; /* Assure que chaque élément occupe toute la largeur de sa cellule */
   height: 100%; /* Assure que chaque élément occupe toute la hauteur de sa cellule */
   color: #000000;
-  font-size: 0.5em; /* Taille de police pour le texte */
+  font-size: 1em; /* Taille de police pour le texte */
   text-align: center; /* Centre le texte horizontalement */
   text-transform: uppercase; /* Transforme le texte en majuscules */
   word-wrap: break-word; /* Ajoute des retours à la ligne automatiques si le texte est trop long */
@@ -75,9 +75,13 @@ ul li img {
   filter: grayscale(100%) hue-rotate(0deg) saturate(100%) brightness(110%) contrast(110%); /* Applique un filtre duochrome noir et rouge */
   transition: filter 0.3s ease; /* Ajoute une transition pour un effet fluide */
 }
+ul li:hover {
+  transform: scale(1.05); /* Augmente la taille de toute la case au survol */
+  transition: transform 0.5s ease; /* Ajoute une transition fluide pour l'effet */
+}
 
 ul li img:hover {
-  filter: none; /* Supprime le filtre au survol */
+  filter: grayscale(0%) hue-rotate(0deg) saturate(100%) brightness(100%) contrast(100%); /* Enlève le filtre duochrome au survol de l'image */
 }
 
 li {
@@ -97,7 +101,7 @@ img {
 
 h1 {
   color: #000000; /* Couleur du titre */
-  font-size: 3em; /* Taille du texte */
+  font-size: 2em; /* Taille du texte */
   margin-bottom: 40px; /* Espace en dessous du titre */
 }
 
