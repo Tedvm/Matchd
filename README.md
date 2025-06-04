@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# Matchd
-=======
 # centrale-ei-web
 
 ## Backend
@@ -63,4 +60,3 @@ npm run build
 ```
 npm run lint
 ```
->>>>>>> 3f25db30849d6eec16f2318dadeeb8fe82ded501
