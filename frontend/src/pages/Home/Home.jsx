@@ -107,78 +107,115 @@ function useFetchMovies(query) {
   return { movies, loading, error };
 }
 
-function Home() {
-  const [movieName, setMovieName] = useState('');
-  const { movies, loading, error } = useFetchMovies(movieName);
-  const [showVideo, setShowVideo] = useState(false);
-  const [videoEnded, setVideoEnded] = useState(false);
+const Home = () => {
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
-    const alreadySeen = sessionStorage.getItem(VIDEO_SEEN_KEY);
-    if (!alreadySeen) {
-      setShowVideo(true);
-    } else {
-      setVideoEnded(true);
-    }
-  }, []);
+    const fetchMovies = async () => {
+      setLoading(true);
+      setError(null);
 
-  const handleVideoEnd = () => {
-    sessionStorage.setItem(VIDEO_SEEN_KEY, 'true');
-    setShowVideo(false);
-    setVideoEnded(true);
-  };
+      const baseUrl = query.trim()
+        ? 'https://api.themoviedb.org/3/search/movie'
+        : 'https://api.themoviedb.org/3/movie/popular';
+
+      const params = { language: 'fr-FR' };
+      if (query.trim()) {
+        params.query = query;
+      }
+
+      try {
+        const response = await axios.get(baseUrl, {
+          params,
+          headers: {
+            Authorization:
+              'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZjlmNjAwMzY4MzMzODNkNGIwYjNhNzJiODA3MzdjNCIsInN1YiI6IjY0NzA5YmE4YzVhZGE1MDBkZWU2ZTMxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Em7Y9fSW94J91rbuKFjDWxmpWaQzTitxRKNdQ5Lh2Eo',
+            'Content-Type': 'application/json;charset=utf-8',
+          },
+        });
+
+        const results = response.data.results.slice(0, 10);
+        setMovies(results);
+      } catch (err) {
+        setError('Erreur lors du chargement des films');
+        console.error(err);
+      }
+
+      setLoading(false);
+    };
+
+    fetchMovies();
+  }, [query]);
 
   return (
-    <>
-      {showVideo && (
-        <video
-          src="/intro.mp4"
-          autoPlay
-          muted
-          onEnded={handleVideoEnd}
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            objectFit: 'cover',
-            zIndex: 1000,
-          }}
+    <div className="App">
+      <header className="App-header">
+        <h1>films populaires</h1>
+        <input
+          type="text"
+          placeholder="Rechercher un film..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
         />
-      )}
-
-      {videoEnded && (
-        <div className="App">
-          <header className="App-header">
-            <h1>Accueil</h1>
-            <input
-              type="text"
-              className="search-bar"
-              placeholder="Rechercher un film"
-              value={movieName}
-              onChange={(e) => setMovieName(e.target.value)}
+      </header>
+      {loading && <p>Chargement...</p>}
+      {error && <p>{error}</p>}
+      <ul>
+        {movies.map((movie) => (
+          <li key={movie.id}>
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={movie.title}
             />
-
-            {loading && <p>Chargement...</p>}
-            {error && <p>{error}</p>}
-
-            <h4>
-              {movieName.trim() === ''
-                ? '10 films les plus populaires :'
-                : 'Résultats :'}
-            </h4>
-
-            <div className="movies-grid">
-              {movies.length > 0
-                ? movies.map((film) => <Movie key={film.id} film={film} />)
-                : !loading && <p>Aucun film trouvé</p>}
-            </div>
-          </header>
-        </div>
-      )}
-    </>
+            <p>{movie.title}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
-}
+};
 
-export default Home;
+const IntroVideo = ({ onVideoEnd }) => {
+  return (
+    <div
+      className="video-overlay"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: 9999,
+        backgroundColor: 'black',
+      }}
+    >
+      <video
+        src="/intro.mp4"
+        autoPlay
+        muted
+        onEnded={onVideoEnd}
+        className="fullscreen-video"
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+        }}
+      />
+    </div>
+  );
+};
+
+const HomeWithIntro = () => {
+  const [introSeen, setIntroSeen] = useState(false);
+
+  const handleVideoEnd = () => {
+    setIntroSeen(true);
+  };
+
+  return introSeen ? <Home /> : <IntroVideo onVideoEnd={handleVideoEnd} />;
+};
+
+export default HomeWithIntro;

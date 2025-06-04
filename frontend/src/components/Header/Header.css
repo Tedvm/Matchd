@@ -3,6 +3,7 @@
   flex-direction: row;
   justify-content: center;
   padding: 5px;
+  padding-top: 30px;
   font-size: calc(10px + 2vmin);
 }
 
@@ -12,5 +13,6 @@
 
 .Link {
   font-weight: 700;
-  color: white;
+  color: rgb(0, 0, 0);
+  text-decoration: none;
 }
