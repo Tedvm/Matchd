@@ -16,3 +16,11 @@
   color: rgb(0, 0, 0);
   text-decoration: none;
 }
+
+.Logo {
+  position: absolute;
+  top: 0px;
+  left: 15px;
+  width: 100px;
+  height: auto;
+}
