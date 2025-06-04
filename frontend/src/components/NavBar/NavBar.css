@@ -1,0 +1,17 @@
+.navbar {
+  position: sticky; /* ou fixed si tu veux qu'elle soit toujours en haut */
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.navbar input {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px soli;
+}
