@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './Home.css';
 // eslint-disable-next-line import/order
 import React, { useEffect, useState } from 'react';
