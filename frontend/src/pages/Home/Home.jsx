@@ -1,5 +1,8 @@
 import logo from './logo.svg';
 import './Home.css';
+import './Movie.css';
+import './Video.css';
+
 // eslint-disable-next-line import/order
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -24,38 +27,13 @@ function Movie({ film }) {
         </div>
       ) : (
         <div className="movie-poster-container">
-          <div
-            className="movie-poster"
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              color: '#ccc',
-            }}
-          >
-            Pas d’image
-          </div>
+          <div className="movie-no-poster">Pas d’image</div>
         </div>
       )}
 
-      <h4
-        style={{
-          fontSize: '1.2rem',
-          margin: '0.5rem 0 0.2rem 0',
-          textAlign: 'center',
-        }}
-      >
-        {film.title}
-      </h4>
+      <h4 className="movie-title">{film.title}</h4>
 
-      <p
-        style={{
-          fontSize: '0.8rem',
-          color: '#ccc',
-          margin: 0,
-          textAlign: 'center',
-        }}
-      >
+      <p className="movie-info">
         {year} {note}
       </p>
     </div>
@@ -180,29 +158,13 @@ const Home = () => {
 
 const IntroVideo = ({ onVideoEnd }) => {
   return (
-    <div
-      className="video-overlay"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        zIndex: 9999,
-        backgroundColor: 'black',
-      }}
-    >
+    <div className="video-overlay">
       <video
         src="/intro.mp4"
         autoPlay
         muted
         onEnded={onVideoEnd}
         className="fullscreen-video"
-        style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-        }}
       />
     </div>
   );
