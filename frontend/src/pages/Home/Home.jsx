@@ -209,12 +209,9 @@ const IntroVideo = ({ onVideoEnd }) => {
 };
 
 const HomeWithIntro = () => {
-  const [introSeen, setIntroSeen] = useState(
-    localStorage.getItem(VIDEO_SEEN_KEY) === 'true'
-  );
+  const [introSeen, setIntroSeen] = useState(false);
 
   const handleVideoEnd = () => {
-    localStorage.setItem(VIDEO_SEEN_KEY, 'true');
     setIntroSeen(true);
   };
 
