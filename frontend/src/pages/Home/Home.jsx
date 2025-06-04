@@ -167,7 +167,7 @@ const Home = () => {
         {movies.map((movie) => (
           <li key={movie.id}>
             <img
-              src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
               alt={movie.title}
             />
             <p>{movie.title}</p>
@@ -178,4 +178,47 @@ const Home = () => {
   );
 };
 
-export default Home;
+const IntroVideo = ({ onVideoEnd }) => {
+  return (
+    <div
+      className="video-overlay"
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: 9999,
+        backgroundColor: 'black',
+      }}
+    >
+      <video
+        src="/intro.mp4"
+        autoPlay
+        muted
+        onEnded={onVideoEnd}
+        className="fullscreen-video"
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+        }}
+      />
+    </div>
+  );
+};
+
+const HomeWithIntro = () => {
+  const [introSeen, setIntroSeen] = useState(
+    localStorage.getItem(VIDEO_SEEN_KEY) === 'true'
+  );
+
+  const handleVideoEnd = () => {
+    localStorage.setItem(VIDEO_SEEN_KEY, 'true');
+    setIntroSeen(true);
+  };
+
+  return introSeen ? <Home /> : <IntroVideo onVideoEnd={handleVideoEnd} />;
+};
+
+export default HomeWithIntro;
