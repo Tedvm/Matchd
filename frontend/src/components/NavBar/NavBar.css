@@ -1,0 +1,81 @@
+.navbar-wrapper {
+  position: fixed;
+  top: 62px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: 80vw;
+  max-width: 1000px;
+  text-align: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: white;
+  padding: 16px 40px;
+  border-radius: 60px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  width: 80vw;
+  max-width: 1000px;
+  height: 100px; /* 🔥 tu peux augmenter ici pour faire une barre plus massive */
+  box-sizing: border-box;
+  gap: 16px;
+}
+
+.navbar-icon {
+  height: 90%; /* ✅ prend 90% de la hauteur de .navbar */
+  width: auto; /* ✅ garde le ratio naturel */
+  object-fit: contain; /* ✅ évite de déformer l’image */
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.navbar-item {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.navbar-item:hover .navbar-icon {
+  margin-right: 8px;
+  transform: translateX(-10px);
+}
+
+.navbar-icon:hover {
+  transform: scale(1.1);
+}
+
+.navbar-label {
+  white-space: nowrap;
+  font-size: 16px;
+  color: #333;
+  margin-left: 6px;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.search-slot {
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center; /* ✅ Centre le contenu horizontalement */
+}
+
+/* BARRE DE RECHERCHE APPARENTE EN DESSOUS */
+.search-input {
+  display: block;
+  margin: 8px auto 0 auto;
+  width: calc(100% - 50px); /* ✅ Réduit la largeur de 50px */
+  padding: 12px 18px;
+  border: 1px solid #ccc;
+  border-radius: 40px;
+  font-size: 16px;
+  background-color: #fff;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}

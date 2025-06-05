@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './Home.css';
 import './Movie.css';
 import './Video.css';
