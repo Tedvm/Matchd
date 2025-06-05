@@ -1,6 +1,5 @@
-// savetoDB.js
 import { appDataSource } from './appDataSource.js';
-import { fetchAllPopularMovies } from './fetchTMDB2.js';
+import { fetchAllPopularMovies } from './fetchTMDB.js';
 
 async function saveMovies() {
   try {
