@@ -1,21 +1,35 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../databaseMovies/index.js';
+import { EntitySchema } from 'typeorm';
 
-const Movie = sequelize.define('Movie', {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-  },
-  title: DataTypes.STRING,
-  overview: DataTypes.TEXT,
-  release_date: DataTypes.STRING,
-  poster_path: DataTypes.STRING,
-  vote_average: DataTypes.FLOAT,
-
-  // Ajout du champ personnalisé
-  userData: {
-    type: DataTypes.TEXT,
-    defaultValue: null,
+const Movie = new EntitySchema({
+  name: 'Movie',
+  tableName: 'movies',
+  columns: {
+    id: {
+      type: Number,
+      primary: true,
+    },
+    title: {
+      type: String,
+    },
+    original_language: {
+      type: String,
+    },
+    overview: {
+      type: String,
+    },
+    release_date: {
+      type: String,
+    },
+    poster_path: {
+      type: String,
+    },
+    vote_average: {
+      type: 'float',
+    },
+    userData: {
+      type: 'text',
+      nullable: true,
+    },
   },
 });
 

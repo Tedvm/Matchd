@@ -1,18 +1,21 @@
-import sequelize from '../databaseMovies/index.js';
-import Movie from '../databaseMovies/Movie.js';
-import { fetchAllPopularMovies } from '../databaseMovies/fetchTMDB.js';
+// savetoDB.js
+import { appDataSource } from './appDataSource.js';
+import { fetchAllPopularMovies } from './fetchTMDB2.js';
 
 async function saveMovies() {
   try {
-    await sequelize.sync({ force: true }); // supprime et recrée les tables
-    const movies = await fetchAllPopularMovies();
+    await appDataSource.initialize();
+    const movieRepo = appDataSource.getRepository('Movie');
 
-    await Movie.bulkCreate(movies);
+    const movies = await fetchAllPopularMovies();
+    await movieRepo.clear();
+    await movieRepo.save(movies);
+
     console.log(`${movies.length} films sauvegardés dans la base de données.`);
   } catch (err) {
     console.error('Erreur de sauvegarde :', err.message);
   } finally {
-    await sequelize.close();
+    await appDataSource.destroy();
   }
 }
 
