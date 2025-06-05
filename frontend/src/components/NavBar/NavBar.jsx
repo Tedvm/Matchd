@@ -40,9 +40,9 @@ function Navbar() {
     if (!searchLocked) {
       timeoutRef.current = setTimeout(() => {
         setShowSearch(false);
-      }, 2000); // 2 secondes
+      }, 1000); // 1 secondes
     }
-    inactivityTimeoutRef.current = setTimeout(resetSearchBar, 2000); // 2 secondes d'inactivité
+    inactivityTimeoutRef.current = setTimeout(resetSearchBar, 1000); // 1 secondes d'inactivité
   };
 
   const handleSearchClick = () => {
@@ -60,8 +60,8 @@ function Navbar() {
     timeoutRef.current = setTimeout(() => {
       setSearchLocked(false);
       setShowSearch(false);
-    }, 2000); // 2 secondes après avoir quitté la barre de recherche
-    inactivityTimeoutRef.current = setTimeout(resetSearchBar, 2000); // 2 secondes d'inactivité
+    }, 1000); // 1 secondes après avoir quitté la barre de recherche
+    inactivityTimeoutRef.current = setTimeout(resetSearchBar, 1000); // 1 secondes d'inactivité
   };
 
   const handleSearchSlotMouseEnter = () => {
@@ -73,9 +73,9 @@ function Navbar() {
     if (!searchLocked) {
       timeoutRef.current = setTimeout(() => {
         setShowSearch(false);
-      }, 2000); // 2 secondes
+      }, 1000); // 1 secondes
     }
-    inactivityTimeoutRef.current = setTimeout(resetSearchBar, 2000); // 2 secondes d'inactivité
+    inactivityTimeoutRef.current = setTimeout(resetSearchBar, 1000); // 1 secondes d'inactivité
   };
 
   useEffect(() => {
@@ -98,7 +98,7 @@ function Navbar() {
           }}
           onMouseLeave={() => {
             setHoveredButton(null);
-            inactivityTimeoutRef.current = setTimeout(resetSearchBar, 2000); // 2 secondes d'inactivité
+            inactivityTimeoutRef.current = setTimeout(resetSearchBar, 1000); // 1 secondes d'inactivité
           }}
         >
           <img
@@ -121,7 +121,7 @@ function Navbar() {
           }}
           onMouseLeave={() => {
             setHoveredButton(null);
-            inactivityTimeoutRef.current = setTimeout(resetSearchBar, 2000); // 2 secondes d'inactivité
+            inactivityTimeoutRef.current = setTimeout(resetSearchBar, 1000); // 1 secondes d'inactivité
           }}
         >
           <img
