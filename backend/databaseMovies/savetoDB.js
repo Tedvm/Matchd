@@ -9,7 +9,7 @@ async function saveMovies() {
 
     const movies = await fetchAllPopularMovies();
     await movieRepo.clear();
-    await movieRepo.upsert(movies, ['id']);
+    await movieRepo.upsert(movies, ['id']); //save qui permet de faire des modifs
 
     console.log(`${movies.length} films sauvegardés dans la base de données.`);
   } catch (err) {

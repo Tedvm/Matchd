@@ -20,6 +20,7 @@ export async function fetchAllPopularMovies() {
     return allMovies.map((movie) => ({
         id: movie.id,
         title: movie.title,
+        genre_ids: movie.genre_ids,
         original_language: movie.original_language,
         overview: movie.overview,
         release_date: movie.release_date,
