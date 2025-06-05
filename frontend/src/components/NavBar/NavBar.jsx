@@ -89,6 +89,23 @@ function Navbar() {
   return (
     <div className="navbar-wrapper">
       <div className="navbar">
+        {/* Bouton Accueil */}
+        <img
+          src={ICONS.home}
+          alt="Accueil"
+          onClick={() => navigate('/')}
+          className="navbar-icon"
+        />
+
+        {/* Bouton Recherche */}
+        <div
+          className="search-slot"
+          onMouseEnter={handleMouseEnterSearch}
+          onMouseLeave={handleMouseLeaveSearch}
+          onClick={handleSearchClick}
+        >
+          <img src={ICONS.search} alt="Recherche" className="navbar-icon" />
+        </div>
         {/* Bouton Match */}
         <div
           className="navbar-item"
@@ -111,7 +128,6 @@ function Navbar() {
             <span className="navbar-label">Swipe / Match</span>
           )}
         </div>
-
         {/* Bouton Utilisateur */}
         <div
           className="navbar-item"
@@ -133,24 +149,6 @@ function Navbar() {
           {hoveredButton === 'user' && (
             <span className="navbar-label">Utilisateur</span>
           )}
-        </div>
-
-        {/* Bouton Accueil */}
-        <img
-          src={ICONS.home}
-          alt="Accueil"
-          onClick={() => navigate('/')}
-          className="navbar-icon"
-        />
-
-        {/* Bouton Recherche */}
-        <div
-          className="search-slot"
-          onMouseEnter={handleMouseEnterSearch}
-          onMouseLeave={handleMouseLeaveSearch}
-          onClick={handleSearchClick}
-        >
-          <img src={ICONS.search} alt="Recherche" className="navbar-icon" />
         </div>
       </div>
       {showSearch && (
