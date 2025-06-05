@@ -4,4 +4,4 @@ node_modules
 # local env files
 .env
 public
-database.sqlite3
+/backend/database.sqlite3
