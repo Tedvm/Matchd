@@ -1,13 +1,31 @@
 .Users-container {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  padding-top: 25vh; /* optionnel : pour décaler tout le conteneur vers le bas */
 }
 
-.Users-container > :not(:last-child) {
-  margin-bottom: 20px;
+.users-login-link {
+  margin-top: 350px;
+  font-size: 14px;
+  text-align: center;
+  /* plus besoin d’absolute ici */
 }
 
+/* Style du lien */
+.users-login-link a {
+  color: #a1222d;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.users-login-link a:hover {
+  text-decoration: underline;
+}
+
+/* Erreur de chargement centrée (si utilisée) */
 .users-loading-error {
   color: red;
+  text-align: center;
+  margin-top: 15px;
 }
