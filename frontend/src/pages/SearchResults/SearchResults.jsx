@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSearch } from '../../context/SearchContext';
 import './SearchResults.css';
+import { Link } from 'react-router-dom';
 
 const SearchResults = () => {
   const { query } = useSearch();
@@ -38,17 +39,19 @@ const SearchResults = () => {
 
   return (
     <div className="search-results">
-      <h1>Results for « {query} »</h1>
+      <h1>Résultats pour "{query}"</h1>
       {loading && <p>Chargement...</p>}
       {error && <p>{error}</p>}
       <ul>
         {movies.map((movie) => (
           <li key={movie.id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
-              alt={movie.title}
-            />
-            <p>{movie.title}</p>
+            <Link to={`/movie/${movie.id}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <p>{movie.title}</p>
+            </Link>
           </li>
         ))}
       </ul>

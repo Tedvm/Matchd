@@ -121,18 +121,20 @@ const Home = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>popular movies</h1>
+        <h1>films populaires</h1>
       </header>
       {loading && <p>Chargement...</p>}
       {error && <p>{error}</p>}
       <ul>
         {movies.map((movie) => (
           <li key={movie.id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-            />
-            <p>{movie.title}</p>
+            <Link to={`/movie/${movie.id}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <p>{movie.title}</p>
+            </Link>
           </li>
         ))}
       </ul>

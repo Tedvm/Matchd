@@ -6,6 +6,7 @@ import Counter from './pages/Counter/Counter';
 import Users from './pages/Users/Users';
 import Navbar from './components/Navbar/Navbar';
 import SearchResults from './pages/SearchResults/SearchResults';
+import MoviePage from './pages/Movies/MoviePage'; // adapte le chemin si tu changes
 
 function App() {
   console.log('App rendered !');
@@ -19,6 +20,7 @@ function App() {
         <Route path="users" element={<Users />} />
         <Route path="about" element={<About />} />
         <Route path="/search" element={<SearchResults />} />
+        <Route path="/movie/:id" element={<MoviePage />} />
       </Routes>
     </Layout>
   );
