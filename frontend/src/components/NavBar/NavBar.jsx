@@ -16,7 +16,7 @@ function Navbar() {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     setQuery(searchInput); // 🔁 mise à jour du contexte
-    navigate('/'); // 🔁 retour à la Home
+    navigate('/search'); // 🔁 retour à la Home
   };
   const [showSearch, setShowSearch] = useState(false);
   const [hoveredButton, setHoveredButton] = useState(null);

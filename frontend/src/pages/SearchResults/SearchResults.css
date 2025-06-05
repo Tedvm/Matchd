@@ -112,7 +112,7 @@ h1 {
 
 .search-results h1 {
   text-align: center; /* Centrage horizontal */
-  margin-top: 100px; /* Espace vers le bas */
+  margin-top: 50px; /* Espace vers le bas */
   margin-bottom: 40px; /* Optionnel : espace sous le h1 */
   font-size: 2.5rem; /* Optionnel : taille du texte */
 }
