@@ -2,6 +2,8 @@ import './Home.css';
 // eslint-disable-next-line import/order
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useSearch } from '../../context/SearchContext';
+
 const VIDEO_SEEN_KEY = 'introVideoSeen';
 
 function Movie({ film }) {
@@ -62,10 +64,6 @@ function Movie({ film }) {
 }
 
 function useFetchMovies(query) {
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
   useEffect(() => {
     const fetchMovies = async () => {
       setLoading(true);
@@ -110,7 +108,7 @@ const Home = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [query, setQuery] = useState('');
+  const { query } = useSearch();
 
   useEffect(() => {
     const fetchMovies = async () => {

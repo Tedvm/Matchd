@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
+import { useSearch } from '../../context/SearchContext';
 
 const ICONS = {
   match: '/assets/match.png',
@@ -10,6 +11,13 @@ const ICONS = {
 };
 
 function Navbar() {
+  const { setQuery } = useSearch(); // 🔥 Import du setter global
+  const [searchInput, setSearchInput] = useState('');
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    setQuery(searchInput); // 🔁 mise à jour du contexte
+    navigate('/'); // 🔁 retour à la Home
+  };
   const [showSearch, setShowSearch] = useState(false);
   const [hoveredButton, setHoveredButton] = useState(null);
   const [searchLocked, setSearchLocked] = useState(false);
@@ -145,19 +153,22 @@ function Navbar() {
           <img src={ICONS.search} alt="Recherche" className="navbar-icon" />
         </div>
       </div>
-
       {showSearch && (
         <div
           className="search-container"
           onMouseEnter={handleSearchSlotMouseEnter}
           onMouseLeave={handleSearchSlotMouseLeave}
         >
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Recherche..."
-            onBlur={handleSearchBlur}
-          />
+          <form onSubmit={handleSearchSubmit}>
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Recherche..."
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              onBlur={handleSearchBlur}
+            />
+          </form>
         </div>
       )}
     </div>
