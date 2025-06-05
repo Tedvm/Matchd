@@ -1,7 +1,8 @@
 // frontend/src/pages/Login/Login.jsx
+
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Login.css';
 
 export default function Login() {
@@ -63,6 +64,10 @@ export default function Login() {
         <button type="submit">Se connecter</button>
       </form>
       {error && <div className="login-error">{error}</div>}
+
+      <div className="login-signup-link">
+        Pas de compte ? <Link to="/users">S'inscrire</Link>
+      </div>
     </div>
   );
 }

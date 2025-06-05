@@ -21,6 +21,7 @@
     margin: 0;
     text-align: center;
     font-size: 24px;
+    margin-bottom: 30px;
     color: #260411;
   }
   
@@ -28,7 +29,7 @@
   .login-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 35px;
   }
   
   /* Styles pour les inputs (email & mot de passe) */
@@ -87,3 +88,18 @@
     margin-top: 10px;
   }
   
+  .login-signup-link {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+  }
+  
+  .login-signup-link a {
+    color: #a1222d;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .login-signup-link a:hover {
+    text-decoration: underline;
+  }
