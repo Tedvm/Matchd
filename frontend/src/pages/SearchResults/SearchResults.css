@@ -36,72 +36,60 @@
   }
 }
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
 ul {
-  list-style-type: none; /* Enlève les points des listes */
-  padding: 0; /* Supprime le padding par défaut */
-  margin: 0 auto; /* Centre la grille horizontalement */
-  display: grid; /* Utilise CSS Grid */
-  grid-template-columns: repeat(
-    5,
-    1fr
-  ); /* Définit 4 colonnes de largeur égale */
-  row-gap: 40px; /* Ajoute un espacement vertical de 20px entre les éléments */
-  column-gap: 0px; /* Aucun espacement horizontal entre les éléments */
-  border: 0px solid #ccc; /* Ajoute une bordure autour de la grille */
-  max-width: 95%; /* Limite la largeur maximale de la grille */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+  max-width: 100vw; /* 👈 empêche de dépasser */
+  overflow-x: hidden;
+  row-gap: 0;
+  column-gap: 0;
 }
 
 ul li {
+  box-sizing: border-box;
+  border: 1px solid black;
+  background-color: #fff1e8;
   display: flex;
-  flex-direction: column; /* Aligne les éléments verticalement */
-  align-items: center; /* Centre les éléments horizontalement */
-  background-color: #fff1e8; /* Ajoute un fond clair pour chaque film */
-  padding: 0 0 0px 0; /* Ajoute un padding en bas pour le texte */
-  border: 2px solid #000000; /* Ajoute une bordure autour de chaque élément */
-  border-radius: 0; /* Supprime les coins arrondis */
-  width: 90%; /* Assure que chaque élément occupe toute la largeur de sa cellule */
-  height: 100%; /* Assure que chaque élément occupe toute la hauteur de sa cellule */
-  color: #000000;
-  font-size: 1em; /* Taille de police pour le texte */
-  text-align: center; /* Centre le texte horizontalement */
-  text-transform: uppercase; /* Transforme le texte en majuscules */
-  word-wrap: break-word; /* Ajoute des retours à la ligne automatiques si le texte est trop long */
-  overflow-wrap: break-word; /* Assure la compatibilité pour les retours à la ligne automatiques */
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  position: relative; /* Pour permettre le z-index */
+  z-index: 0; /* Niveau par défaut */
+  transition: transform 0.5s ease, z-index 0s linear;
 }
 
 ul li img {
-  margin: 0; /* Supprime l'espacement autour de l'image */
-  padding-top: 0px; /* Ajoute un espace en haut de l'image */
-  border-radius: 0; /* Supprime les coins arrondis des images */
-  width: 100%; /* L'image occupe toute la largeur de la cellule */
-  height: auto; /* Garde les proportions des images */
-  filter: grayscale(100%) hue-rotate(0deg) saturate(100%) brightness(110%)
-    contrast(110%); /* Applique un filtre duochrome noir et rouge */
-  transition: filter 0.3s ease; /* Ajoute une transition pour un effet fluide */
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
 }
+
 ul li:hover {
   transform: scale(1.05); /* Augmente la taille de toute la case au survol */
   transition: transform 0.5s ease; /* Ajoute une transition fluide pour l'effet */
+  transform: scale(1.05); /* Agrandit légèrement */
+  z-index: 999; /* Passe devant tous les autres éléments sauf navbar */
 }
 
 ul li img:hover {
   filter: grayscale(0%) hue-rotate(0deg) saturate(100%) brightness(100%)
     contrast(100%); /* Enlève le filtre duochrome au survol de l'image */
-}
-
-li {
-  display: flex; /* Aligne les éléments horizontalement */
-  align-items: center; /* Centre verticalement les éléments */
-  background-color: #685129; /* Ajoute un fond clair pour chaque film */
-  padding: 10px; /* Ajoute de l'espace interne */
-  border-radius: 0px; /* Arrondit les coins */
-}
-
-img {
-  margin-right: 15px; /* Ajoute de l'espacement entre l'image et le texte */
-  border-radius: 8px; /* Ajoute des coins arrondis aux images */
-  width: 400px; /* Définit une largeur fixe pour les images */
-  height: auto; /* Garde les proportions des images */
 }
 
 h1 {
@@ -112,7 +100,22 @@ h1 {
 
 .search-results h1 {
   text-align: center; /* Centrage horizontal */
-  margin-top: 50px; /* Espace vers le bas */
-  margin-bottom: 40px; /* Optionnel : espace sous le h1 */
+  margin-top: 60px; /* Espace vers le bas */
+  margin-bottom: 50px; /* Optionnel : espace sous le h1 */
   font-size: 2.5rem; /* Optionnel : taille du texte */
+}
+
+body {
+  margin: 0; /* supprime la marge par défaut */
+  padding: 0;
+  overflow-x: hidden; /* 👈 coupe le débordement horizontal */
+}
+
+* {
+  box-sizing: border-box; /* pour que padding+border soient inclus dans width */
+}
+
+body {
+  padding-top: 7vw; /* 🧱 même hauteur que .navbar + espacement */
+  box-sizing: border-box;
 }
