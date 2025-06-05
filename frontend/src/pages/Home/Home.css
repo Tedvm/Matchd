@@ -75,8 +75,8 @@ ul li img {
   border-radius: 0; /* Supprime les coins arrondis des images */
   width: 100%; /* L'image occupe toute la largeur de la cellule */
   height: auto; /* Garde les proportions des images */
-  filter: grayscale(100%) hue-rotate(0deg) saturate(100%) brightness(110%)
-    contrast(110%); /* Applique un filtre duochrome noir et rouge */
+  filter: grayscale(40%) hue-rotate(0deg) saturate(100%) brightness(90%)
+    contrast(110%); Applique un filtre duochrome noir et rouge
   transition: filter 0.3s ease; /* Ajoute une transition pour un effet fluide */
 }
 ul li:hover {

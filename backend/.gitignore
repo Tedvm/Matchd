@@ -4,4 +4,9 @@ node_modules
 # local env files
 .env
 public
+<<<<<<< HEAD
 /backend/database.sqlite3
+=======
+
+database.sqlite3
+>>>>>>> 1ecf4a947633253a4de52726faa2a3f1272ea814
