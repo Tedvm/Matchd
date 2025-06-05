@@ -1,0 +1,41 @@
+.movie-page {
+  padding: 4vw;
+  font-family: 'Helvetica Neue', sans-serif;
+  color: #000;
+  background-color: #fff1e8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.movie-poster {
+  width: 300px;
+  max-width: 80vw;
+  height: auto;
+  border: 2px solid #000;
+  border-radius: 6px;
+  margin-bottom: 2vw;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.movie-title {
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.movie-details {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.movie-synopsis {
+  max-width: 800px;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: justify;
+  border-top: 1px solid #000;
+  padding-top: 1.5rem;
+}

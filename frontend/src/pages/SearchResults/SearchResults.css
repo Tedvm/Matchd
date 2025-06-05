@@ -120,3 +120,8 @@ body {
   padding-top: 7vw; /* 🧱 même hauteur que .navbar + espacement */
   box-sizing: border-box;
 }
+
+.search-results a {
+  text-decoration: none; /* ❌ Enlève le souligné */
+  color: inherit; /* ✅ Garde la couleur du texte parent */
+}
