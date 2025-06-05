@@ -1,0 +1,89 @@
+/* Conteneur principal centré en position absolue */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* Titre de la page de connexion */
+  .login-container h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 24px;
+    color: #260411;
+  }
+  
+  /* Formulaire en flex colonne */
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  /* Styles pour les inputs (email & mot de passe) */
+  .login-form input[type="email"],
+  .login-form input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  /* Focus sur les inputs */
+  .login-form input[type="email"]:focus,
+  .login-form input[type="password"]:focus {
+    border-color: #ba294b;
+    outline: none;
+  }
+  
+  /* Bouton de connexion */
+  .login-form button {
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: #a1222d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  /* Hover et active sur le bouton */
+  .login-form button:hover {
+    background-color: #260411;
+    transform: scale(1.05);
+  }
+  
+  .login-form button:active {
+    transform: scale(1);
+  }
+  
+  /* Message d’erreur */
+  .login-error {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  /* (Éventuellement) Message de succès, si vous voulez le prévoir */
+  .login-success {
+    color: green;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
