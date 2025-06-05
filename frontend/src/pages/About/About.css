@@ -1,3 +1,25 @@
 .about {
+  display: flex;
+  flex-direction: column; /* Organise les éléments de haut en bas */
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
   text-align: center;
+  font-size: 1.2rem;
+  color: #333; /* Couleur plus douce pour le texte */
+  padding: 2rem; /* Ajout d'un peu d'espace autour */
+  box-sizing: border-box; /* Pour inclure le padding dans les dimensions */
+  margin-top: -90px; /* Remonte tout de 200px */
+}
+
+.about h1 {
+  font-size: 2.5rem; /* Titre plus grand */
+  margin-bottom: 1rem; /* Espacement sous le titre */
+  color: #222; /* Couleur légèrement plus foncée pour le titre */
+}
+
+.about p {
+  line-height: 1.6; /* Amélioration de la lisibilité */
+  max-width: 600px; /* Limite la largeur du texte */
+  color: #000000; /* Couleur plus douce pour le paragraphe */
 }
