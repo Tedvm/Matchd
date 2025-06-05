@@ -4,10 +4,15 @@
   align-items: flex-start;
 }
 
-.Users-container > :not(:last-child) {
-  margin-bottom: 20px;
-}
-
 .users-loading-error {
   color: red;
+}
+
+.login-link {
+  color: rgb(163, 61, 61);
+  text-decoration: underline;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

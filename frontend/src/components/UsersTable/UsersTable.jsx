@@ -24,6 +24,7 @@ function UsersTable({ users, onSuccessfulUserDeletion }) {
               <td>{user.email}</td>
               <td>{user.firstname}</td>
               <td>{user.lastname}</td>
+              <td>{user.password}</td>
               <td>
                 <button onClick={() => deleteUser(user.id)}>Delete</button>
               </td>

@@ -43,6 +43,7 @@ function AddUserForm({ onSuccessfulUserCreation }) {
   return (
     <div>
       <form className="add-user-form" onSubmit={saveUser}>
+        <h2 className="add-user-title">Créer un compte</h2>
         <input
           className="add-user-input"
           required
@@ -67,6 +68,16 @@ function AddUserForm({ onSuccessfulUserCreation }) {
           value={formValues.lastname}
           onChange={(event) =>
             setFormValues({ ...formValues, lastname: event.target.value })
+          }
+        />
+        <input
+          className="add-user-input"
+          required
+          type="password"
+          placeholder="Password"
+          value={formValues.password || ''}
+          onChange={(event) =>
+            setFormValues({ ...formValues, password: event.target.value })
           }
         />
         <button className="add-user-button" type="submit">
