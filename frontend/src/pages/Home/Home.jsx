@@ -151,12 +151,6 @@ const Home = () => {
     <div className="App">
       <header className="App-header">
         <h1>films populaires</h1>
-        <input
-          type="text"
-          placeholder="Rechercher un film..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
       </header>
       {loading && <p>Chargement...</p>}
       {error && <p>{error}</p>}
