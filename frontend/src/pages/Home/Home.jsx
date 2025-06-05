@@ -5,6 +5,8 @@ import './Video.css';
 // eslint-disable-next-line import/order
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useSearch } from '../../context/SearchContext';
+
 const VIDEO_SEEN_KEY = 'introVideoSeen';
 
 function Movie({ film }) {
@@ -40,10 +42,6 @@ function Movie({ film }) {
 }
 
 function useFetchMovies(query) {
-  const [movies, setMovies] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-
   useEffect(() => {
     const fetchMovies = async () => {
       setLoading(true);
@@ -88,31 +86,24 @@ const Home = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [query, setQuery] = useState('');
+  const query = '';
 
   useEffect(() => {
     const fetchMovies = async () => {
       setLoading(true);
       setError(null);
 
-      const baseUrl = query.trim()
-        ? 'https://api.themoviedb.org/3/search/movie'
-        : 'https://api.themoviedb.org/3/movie/popular';
-
-      const params = { language: 'fr-FR' };
-      if (query.trim()) {
-        params.query = query;
-      }
-
       try {
-        const response = await axios.get(baseUrl, {
-          params,
-          headers: {
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZjlmNjAwMzY4MzMzODNkNGIwYjNhNzJiODA3MzdjNCIsInN1YiI6IjY0NzA5YmE4YzVhZGE1MDBkZWU2ZTMxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Em7Y9fSW94J91rbuKFjDWxmpWaQzTitxRKNdQ5Lh2Eo',
-            'Content-Type': 'application/json;charset=utf-8',
-          },
-        });
+        const response = await axios.get(
+          'https://api.themoviedb.org/3/movie/popular',
+          {
+            params: { language: 'fr-FR' },
+            headers: {
+              Authorization: 'Bearer TON_TOKEN_ICI',
+              'Content-Type': 'application/json;charset=utf-8',
+            },
+          }
+        );
 
         const results = response.data.results.slice(0, 10);
         setMovies(results);
@@ -125,18 +116,12 @@ const Home = () => {
     };
 
     fetchMovies();
-  }, [query]);
+  }, []); // plus de dépendance à query !
 
   return (
     <div className="App">
       <header className="App-header">
-        <h1>films populaires</h1>
-        <input
-          type="text"
-          placeholder="Rechercher un film..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
+        <h1>popular movies</h1>
       </header>
       {loading && <p>Chargement...</p>}
       {error && <p>{error}</p>}
@@ -170,9 +155,12 @@ const IntroVideo = ({ onVideoEnd }) => {
 };
 
 const HomeWithIntro = () => {
-  const [introSeen, setIntroSeen] = useState(false);
+  const [introSeen, setIntroSeen] = useState(() => {
+    return sessionStorage.getItem(VIDEO_SEEN_KEY) === 'true';
+  });
 
   const handleVideoEnd = () => {
+    sessionStorage.setItem(VIDEO_SEEN_KEY, 'true');
     setIntroSeen(true);
   };
 

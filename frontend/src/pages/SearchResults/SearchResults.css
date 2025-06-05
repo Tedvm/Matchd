@@ -1,0 +1,122 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #fff1e8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(0, 0, 0);
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  width: 100%;
+  max-width: 100vw; /* 👈 empêche de dépasser */
+  row-gap: 0;
+  column-gap: 0;
+  overflow: visible; /* 👈 au lieu de hidden */
+  position: relative; /* 👈 nécessaire pour le z-index des enfants */
+}
+
+ul li {
+  box-sizing: border-box;
+  border: 1px solid black;
+  background-color: #fff1e8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  position: relative; /* Pour permettre le z-index */
+  z-index: 0; /* Niveau par défaut */
+  transition: transform 0.5s ease, z-index 0s linear;
+}
+
+ul li img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+ul li:hover {
+  transform: scale(1.05); /* Augmente la taille de toute la case au survol */
+  transition: transform 0.5s ease; /* Ajoute une transition fluide pour l'effet */
+  transform: scale(1.05); /* Agrandit légèrement */
+  z-index: 998; /* Passe devant tous les autres éléments sauf navbar */
+}
+
+ul li img:hover {
+  filter: grayscale(0%) hue-rotate(0deg) saturate(100%) brightness(100%)
+    contrast(100%); /* Enlève le filtre duochrome au survol de l'image */
+}
+
+h1 {
+  color: #000000; /* Couleur du titre */
+  font-size: 2em; /* Taille du texte */
+  margin-bottom: 40px; /* Espace en dessous du titre */
+}
+
+.search-results h1 {
+  text-align: center; /* Centrage horizontal */
+  margin-top: 60px; /* Espace vers le bas */
+  margin-bottom: 50px; /* Optionnel : espace sous le h1 */
+  font-size: 2.5rem; /* Optionnel : taille du texte */
+}
+
+body {
+  margin: 0; /* supprime la marge par défaut */
+  padding: 0;
+  overflow-x: hidden; /* 👈 coupe le débordement horizontal */
+}
+
+* {
+  box-sizing: border-box; /* pour que padding+border soient inclus dans width */
+}
+
+body {
+  padding-top: 7vw; /* 🧱 même hauteur que .navbar + espacement */
+  box-sizing: border-box;
+}

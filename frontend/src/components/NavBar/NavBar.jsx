@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Navbar.css';
+import { useSearch } from '../../context/SearchContext';
 
 const ICONS = {
   match: '/assets/match.png',
@@ -10,6 +11,13 @@ const ICONS = {
 };
 
 function Navbar() {
+  const { setQuery } = useSearch(); // 🔥 Import du setter global
+  const [searchInput, setSearchInput] = useState('');
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    setQuery(searchInput); // 🔁 mise à jour du contexte
+    navigate('/search'); // 🔁 retour à la Home
+  };
   const [showSearch, setShowSearch] = useState(false);
   const [hoveredButton, setHoveredButton] = useState(null);
   const [searchLocked, setSearchLocked] = useState(false);
@@ -32,9 +40,9 @@ function Navbar() {
     if (!searchLocked) {
       timeoutRef.current = setTimeout(() => {
         setShowSearch(false);
-      }, 2000); // 2 secondes
+      }, 1000); // 1 secondes
     }
-    inactivityTimeoutRef.current = setTimeout(resetSearchBar, 2000); // 2 secondes d'inactivité
+    inactivityTimeoutRef.current = setTimeout(resetSearchBar, 1000); // 1 secondes d'inactivité
   };
 
   const handleSearchClick = () => {
@@ -52,8 +60,8 @@ function Navbar() {
     timeoutRef.current = setTimeout(() => {
       setSearchLocked(false);
       setShowSearch(false);
-    }, 2000); // 2 secondes après avoir quitté la barre de recherche
-    inactivityTimeoutRef.current = setTimeout(resetSearchBar, 2000); // 2 secondes d'inactivité
+    }, 1000); // 1 secondes après avoir quitté la barre de recherche
+    inactivityTimeoutRef.current = setTimeout(resetSearchBar, 1000); // 1 secondes d'inactivité
   };
 
   const handleSearchSlotMouseEnter = () => {
@@ -65,9 +73,9 @@ function Navbar() {
     if (!searchLocked) {
       timeoutRef.current = setTimeout(() => {
         setShowSearch(false);
-      }, 2000); // 2 secondes
+      }, 1000); // 1 secondes
     }
-    inactivityTimeoutRef.current = setTimeout(resetSearchBar, 2000); // 2 secondes d'inactivité
+    inactivityTimeoutRef.current = setTimeout(resetSearchBar, 1000); // 1 secondes d'inactivité
   };
 
   useEffect(() => {
@@ -81,52 +89,6 @@ function Navbar() {
   return (
     <div className="navbar-wrapper">
       <div className="navbar">
-        {/* Bouton Match */}
-        <div
-          className="navbar-item"
-          onMouseEnter={() => {
-            clearTimeout(inactivityTimeoutRef.current);
-            setHoveredButton('match');
-          }}
-          onMouseLeave={() => {
-            setHoveredButton(null);
-            inactivityTimeoutRef.current = setTimeout(resetSearchBar, 2000); // 2 secondes d'inactivité
-          }}
-        >
-          <img
-            src={ICONS.match}
-            alt="Swipe / Match"
-            onClick={() => navigate('/autre')}
-            className="navbar-icon"
-          />
-          {hoveredButton === 'match' && (
-            <span className="navbar-label">Swipe / Match</span>
-          )}
-        </div>
-
-        {/* Bouton Utilisateur */}
-        <div
-          className="navbar-item"
-          onMouseEnter={() => {
-            clearTimeout(inactivityTimeoutRef.current);
-            setHoveredButton('user');
-          }}
-          onMouseLeave={() => {
-            setHoveredButton(null);
-            inactivityTimeoutRef.current = setTimeout(resetSearchBar, 2000); // 2 secondes d'inactivité
-          }}
-        >
-          <img
-            src={ICONS.user}
-            alt="Utilisateur"
-            onClick={() => navigate('/user')}
-            className="navbar-icon"
-          />
-          {hoveredButton === 'user' && (
-            <span className="navbar-label">Utilisateur</span>
-          )}
-        </div>
-
         {/* Bouton Accueil */}
         <img
           src={ICONS.home}
@@ -144,20 +106,67 @@ function Navbar() {
         >
           <img src={ICONS.search} alt="Recherche" className="navbar-icon" />
         </div>
+        {/* Bouton Match */}
+        <div
+          className="navbar-item"
+          onMouseEnter={() => {
+            clearTimeout(inactivityTimeoutRef.current);
+            setHoveredButton('match');
+          }}
+          onMouseLeave={() => {
+            setHoveredButton(null);
+            inactivityTimeoutRef.current = setTimeout(resetSearchBar, 1000); // 1 secondes d'inactivité
+          }}
+        >
+          <img
+            src={ICONS.match}
+            alt="Swipe / Match"
+            onClick={() => navigate('/autre')}
+            className="navbar-icon"
+          />
+          {hoveredButton === 'match' && (
+            <span className="navbar-label">Swipe / Match</span>
+          )}
+        </div>
+        {/* Bouton Utilisateur */}
+        <div
+          className="navbar-item"
+          onMouseEnter={() => {
+            clearTimeout(inactivityTimeoutRef.current);
+            setHoveredButton('user');
+          }}
+          onMouseLeave={() => {
+            setHoveredButton(null);
+            inactivityTimeoutRef.current = setTimeout(resetSearchBar, 1000); // 1 secondes d'inactivité
+          }}
+        >
+          <img
+            src={ICONS.user}
+            alt="Utilisateur"
+            onClick={() => navigate('/user')}
+            className="navbar-icon"
+          />
+          {hoveredButton === 'user' && (
+            <span className="navbar-label">Utilisateur</span>
+          )}
+        </div>
       </div>
-
       {showSearch && (
         <div
           className="search-container"
           onMouseEnter={handleSearchSlotMouseEnter}
           onMouseLeave={handleSearchSlotMouseLeave}
         >
-          <input
-            type="text"
-            className="search-input"
-            placeholder="Recherche..."
-            onBlur={handleSearchBlur}
-          />
+          <form onSubmit={handleSearchSubmit}>
+            <input
+              type="text"
+              className="search-input"
+              placeholder="Recherche..."
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              onBlur={handleSearchBlur}
+            />
+          </form>
         </div>
       )}
     </div>

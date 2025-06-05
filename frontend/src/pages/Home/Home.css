@@ -41,7 +41,10 @@ ul {
   padding: 0; /* Supprime le padding par défaut */
   margin: 0 auto; /* Centre la grille horizontalement */
   display: grid; /* Utilise CSS Grid */
-  grid-template-columns: repeat(5, 1fr); /* Définit 4 colonnes de largeur égale */
+  grid-template-columns: repeat(
+    5,
+    1fr
+  ); /* Définit 4 colonnes de largeur égale */
   row-gap: 40px; /* Ajoute un espacement vertical de 20px entre les éléments */
   column-gap: 0px; /* Aucun espacement horizontal entre les éléments */
   border: 0px solid #ccc; /* Ajoute une bordure autour de la grille */
@@ -72,7 +75,8 @@ ul li img {
   border-radius: 0; /* Supprime les coins arrondis des images */
   width: 100%; /* L'image occupe toute la largeur de la cellule */
   height: auto; /* Garde les proportions des images */
-  filter: grayscale(100%) hue-rotate(0deg) saturate(100%) brightness(110%) contrast(110%); /* Applique un filtre duochrome noir et rouge */
+  filter: grayscale(100%) hue-rotate(0deg) saturate(100%) brightness(110%)
+    contrast(110%); /* Applique un filtre duochrome noir et rouge */
   transition: filter 0.3s ease; /* Ajoute une transition pour un effet fluide */
 }
 ul li:hover {
@@ -81,7 +85,8 @@ ul li:hover {
 }
 
 ul li img:hover {
-  filter: grayscale(0%) hue-rotate(0deg) saturate(100%) brightness(100%) contrast(100%); /* Enlève le filtre duochrome au survol de l'image */
+  filter: grayscale(0%) hue-rotate(0deg) saturate(100%) brightness(100%)
+    contrast(100%); /* Enlève le filtre duochrome au survol de l'image */
 }
 
 li {
@@ -105,10 +110,9 @@ h1 {
   margin-bottom: 40px; /* Espace en dessous du titre */
 }
 
-input {
-  width: 300px; /* Largeur du champ de recherche */
-  padding: 10px; /* Espace interne */
-  border-radius: 5px; /* Coins arrondis */
-  border: 1px solid #ccc; /* Bordure grise */
-  margin-bottom: 60px; /* Espace en dessous du champ de recherche */
+.search-results h1 {
+  text-align: center; /* Centrage horizontal */
+  margin-top: 100px; /* Espace vers le bas */
+  margin-bottom: 40px; /* Optionnel : espace sous le h1 */
+  font-size: 2.5rem; /* Optionnel : taille du texte */
 }
