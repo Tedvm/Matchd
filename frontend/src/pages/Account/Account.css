@@ -1,0 +1,41 @@
+/* frontend/src/pages/Account/Account.css */
+
+.account-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px;
+  }
+  
+  .account-container h2 {
+    font-size: 24px;
+    color: #260411;
+    margin-bottom: 20px;
+  }
+  
+.logout-button {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    cursor: pointer;
+    padding: 10px 15px;
+    background-color: #a1222d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+  
+  .logout-button:hover {
+    background-color: #260411;
+    transform: scale(1.05);
+  }
+  
+  .logout-button:active {
+    transform: scale(1);
+  }
+  

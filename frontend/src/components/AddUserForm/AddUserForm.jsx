@@ -6,6 +6,7 @@ const DEFAULT_FORM_VALUES = {
   email: '',
   firstname: '',
   lastname: '',
+  password: '',
 };
 
 function AddUserForm({ onSuccessfulUserCreation }) {
@@ -43,6 +44,7 @@ function AddUserForm({ onSuccessfulUserCreation }) {
   return (
     <div>
       <form className="add-user-form" onSubmit={saveUser}>
+        <h2 className="add-user-title">Créer un compte</h2>
         <input
           className="add-user-input"
           required
@@ -55,7 +57,7 @@ function AddUserForm({ onSuccessfulUserCreation }) {
         />
         <input
           className="add-user-input"
-          placeholder="First name"
+          placeholder="Prénom"
           value={formValues.firstname}
           onChange={(event) =>
             setFormValues({ ...formValues, firstname: event.target.value })
@@ -63,14 +65,23 @@ function AddUserForm({ onSuccessfulUserCreation }) {
         />
         <input
           className="add-user-input"
-          placeholder="Last name"
+          placeholder="Nom"
           value={formValues.lastname}
           onChange={(event) =>
             setFormValues({ ...formValues, lastname: event.target.value })
           }
         />
+        <input
+          className="add-user-input"
+          placeholder="Mot de passe"
+          type="password"
+          value={formValues.password}
+          onChange={(event) =>
+            setFormValues({ ...formValues, password: event.target.value })
+          }
+        />
         <button className="add-user-button" type="submit">
-          Add user
+          Créer
         </button>
       </form>
       {userCreationSuccess !== null && (
