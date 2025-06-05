@@ -31,3 +31,27 @@ body {
 * {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
+
+.logo-floating {
+  position: fixed;
+  top: 2vw;
+  left: 3vw;
+  height: 6vw;
+  width: auto;
+  z-index: 1001;
+  object-fit: contain;
+}
+
+.about-button-floating {
+  position: fixed;
+  top: 3vw;
+  right: 3vw;
+  font-size: 1.3rem;
+  padding: 0.5rem 1rem;
+  background: none;
+  border: 2px solid black;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1001;
+  background-color: #fff1e8;
+}

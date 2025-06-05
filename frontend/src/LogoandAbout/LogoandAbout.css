@@ -1,0 +1,26 @@
+.logo-image {
+  position: fixed;
+  top: 2vw;
+  left: 4.5vw;
+  width: 6vw;
+  height: 6vw;
+  z-index: 1001;
+  object-fit: contain;
+}
+
+.about-button {
+  position: fixed;
+  top: 3.5vw;
+  left: 88vw; /* placé à droite du logo (5vw logo + 1vw marge) */
+  font-size: 2vw;
+  background: none;
+  border: none;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.about-button:hover {
+  text-decoration: underline;
+}
