@@ -1,11 +1,22 @@
-import './Users.css';
-import { Link } from 'react-router-dom'; 
+// frontend/src/pages/Users/Users.jsx
+
+import React, { useEffect } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import AddUserForm from '../../components/AddUserForm/AddUserForm';
 import UsersTable from '../../components/UsersTable/UsersTable';
 import { useFetchUsers } from './useFetchUsers';
+import './Users.css';
 
-function Users() {
+export default function Users() {
   const { users, usersLoadingError, fetchUsers } = useFetchUsers();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      navigate('/account');
+    }
+  }, [navigate]);
 
   return (
     <div className="Users-container">
@@ -22,5 +33,3 @@ function Users() {
     </div>
   );
 }
-
-export default Users;
