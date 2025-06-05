@@ -3,7 +3,7 @@ import axios from 'axios';
 export async function fetchAllPopularMovies() {
     const allMovies = [];
     try{
-    for (let i = 1; i < 11; i++) {
+    for (let i = 1; i < 51; i++) {
   let str = i.toString();
   const options = {
   method: 'GET',
