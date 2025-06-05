@@ -25,7 +25,7 @@
 }
 
 .navbar-icon {
-  height: 120%; /* ✅ prend 90% de la hauteur de .navbar */
+  height: 90%; /* ✅ prend 90% de la hauteur de .navbar */
   width: auto; /* ✅ garde le ratio naturel */
   object-fit: contain; /* ✅ évite de déformer l’image */
   cursor: pointer;
@@ -33,7 +33,7 @@
 }
 
 .navbar-item {
-  height: 120%;
+  height: 90%;
   display: flex;
   align-items: center;
   position: relative;
