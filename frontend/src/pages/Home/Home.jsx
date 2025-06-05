@@ -200,9 +200,12 @@ const IntroVideo = ({ onVideoEnd }) => {
 };
 
 const HomeWithIntro = () => {
-  const [introSeen, setIntroSeen] = useState(false);
+  const [introSeen, setIntroSeen] = useState(() => {
+    return sessionStorage.getItem(VIDEO_SEEN_KEY) === 'true';
+  });
 
   const handleVideoEnd = () => {
+    sessionStorage.setItem(VIDEO_SEEN_KEY, 'true');
     setIntroSeen(true);
   };
 
