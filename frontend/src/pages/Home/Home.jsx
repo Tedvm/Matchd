@@ -5,6 +5,7 @@ import './Video.css';
 // eslint-disable-next-line import/order
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { useSearch } from '../../context/SearchContext';
 
 const VIDEO_SEEN_KEY = 'introVideoSeen';
@@ -99,7 +100,8 @@ const Home = () => {
           {
             params: { language: 'fr-FR' },
             headers: {
-              Authorization: 'Bearer TON_TOKEN_ICI',
+              Authorization:
+                'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZjlmNjAwMzY4MzMzODNkNGIwYjNhNzJiODA3MzdjNCIsInN1YiI6IjY0NzA5YmE4YzVhZGE1MDBkZWU2ZTMxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Em7Y9fSW94J91rbuKFjDWxmpWaQzTitxRKNdQ5Lh2Eo',
               'Content-Type': 'application/json;charset=utf-8',
             },
           }

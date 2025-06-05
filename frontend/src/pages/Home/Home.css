@@ -136,7 +136,7 @@ h1 {
   object-fit: cover;
 }
 
-.search-results a {
-  text-decoration: none; /* ❌ Enlève le souligné */
-  color: inherit; /* ✅ Garde la couleur du texte parent */
+.App a {
+  text-decoration: none;
+  color: inherit;
 }
