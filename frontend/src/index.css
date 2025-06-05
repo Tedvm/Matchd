@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+body {
+  padding-top: 7vw; /* 🧱 même hauteur que .navbar + espacement */
+  box-sizing: border-box;
+}
+
+.navbar-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 9vw; /* adapte à la hauteur de ta navbar */
+  background-color: #fff1e8; /* ou la couleur exacte du fond / navbar */
+  z-index: 999; /* juste en dessous de la navbar qui est à 1000 */
+  box-shadow: 0 10px 20px 10px rgba(0, 0, 0, 0.08);
+}
+
+* {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}

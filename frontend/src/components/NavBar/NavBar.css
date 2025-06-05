@@ -13,19 +13,19 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: white;
+  background: #ffffff;
   padding: 16px 40px;
   border-radius: 60px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   width: 80vw;
   max-width: 1000px;
-  height: 100px; /* 🔥 tu peux augmenter ici pour faire une barre plus massive */
+  height: 5vw; /* 🔥 tu peux augmenter ici pour faire une barre plus massive */
   box-sizing: border-box;
   gap: 16px;
 }
 
 .navbar-icon {
-  height: 90%; /* ✅ prend 90% de la hauteur de .navbar */
+  height: 120%; /* ✅ prend 90% de la hauteur de .navbar */
   width: auto; /* ✅ garde le ratio naturel */
   object-fit: contain; /* ✅ évite de déformer l’image */
   cursor: pointer;
@@ -33,7 +33,7 @@
 }
 
 .navbar-item {
-  height: 100%;
+  height: 120%;
   display: flex;
   align-items: center;
   position: relative;
@@ -60,22 +60,23 @@
 
 .search-slot {
   height: 100%;
-  position: relative;
   display: flex;
-  justify-content: center; /* ✅ Centre le contenu horizontalement */
+  align-items: center; /* ✅ Centrage vertical */
+  justify-content: center; /* ✅ Centrage horizontal */
+  position: relative;
 }
 
 /* BARRE DE RECHERCHE APPARENTE EN DESSOUS */
 .search-input {
   display: block;
   margin: 8px auto 0 auto;
-  width: calc(100% - 50px); /* ✅ Réduit la largeur de 50px */
+  width: calc(100% - 50px);
   padding: 12px 18px;
-  border: 1px solid #ccc;
+  border: none; /* ❌ Supprime le contour */
   border-radius: 40px;
   font-size: 16px;
   background-color: #fff;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  box-shadow: none; /* ❌ Supprime l’ombre */
   outline: none;
   transition: all 0.2s ease-in-out;
 }
