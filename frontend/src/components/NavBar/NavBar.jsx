@@ -143,7 +143,7 @@ function Navbar() {
           <img
             src={ICONS.user}
             alt="Utilisateur"
-            onClick={() => navigate('/user')}
+            onClick={() => navigate('/users')}
             className="navbar-icon"
           />
           {hoveredButton === 'user' && (
