@@ -1,5 +1,6 @@
 import sqlite3
 from .algoreco import compute_similarity
+from collections import Counter
 
 def find_most_similar_movies(id, top_n):
     # Connexion à la base de données
@@ -25,5 +26,14 @@ def find_most_similar_movies(id, top_n):
     # Retourner les top N IDs
     return [movie_id for movie_id, score in similarities[:top_n]]
 
-similar_movies = find_most_similar_movies(11, top_n=10)
-print("Films similaires à 11 :", similar_movies)
+def most_similar_group(movie_ids, top_n):
+    similarity_counter = Counter()
+
+    for movie_id in movie_ids:
+        similars = find_most_similar_movies(movie_id, top_n=top_n*2)
+        for movie in similars:
+            if movie["id"] not in movie_ids:  # ne recommande pas les mêmes
+                similarity_counter[movie["id"]] += 1
+
+    most_common = similarity_counter.most_common(top_n)
+    return [movie_id for movie_id, _ in most_common]
