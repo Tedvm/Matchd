@@ -76,8 +76,31 @@ export default function Account() {
     }
   }, [navigate]);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    // 1) Récupérer l'objet "user" dans localStorage
+    const stored = localStorage.getItem('user');
+    if (stored) {
+      const user = JSON.parse(stored);
+      const { id, favorites } = user;
+
+      // 2) Tenter de synchroniser les favoris en base
+      try {
+        await axios.patch(
+          `http://localhost:8000/users/${id}/favorites`,
+          { favorites: Array.isArray(favorites) ? favorites : [] },
+          { headers: { 'Content-Type': 'application/json' } }
+        );
+        // On ne repose pas la réponse ici, car on ne l’utilise pas après.
+      } catch (err) {
+        console.error('Erreur lors de la sync des favorites au logout :', err);
+        // Même si ça plante, on continue la déconnexion pour ne pas bloquer l’utilisateur
+      }
+    }
+
+    // 3) Supprimer l’utilisateur du localStorage (déconnexion front)
     localStorage.removeItem('user');
+
+    // 4) Rediriger (ici vers la liste des users, '/users')
     navigate('/users');
   };
 
