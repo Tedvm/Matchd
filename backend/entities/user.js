@@ -1,3 +1,4 @@
+// backend/entities/user.js
 import typeorm from 'typeorm';
 
 const User = new typeorm.EntitySchema({
@@ -14,7 +15,17 @@ const User = new typeorm.EntitySchema({
     },
     firstname: { type: String },
     lastname: { type: String },
-    password: { type: String }, // Added password field for login functionality
+    password: { type: String },
+    favorites: {
+      type: 'simple-array', // stocke un CSV d’IDs en TEXT
+      nullable: false,
+      default: '',
+    },
+    vus: {
+      type: 'simple-json',
+      nullable: false,
+      default: '[]',
+    },
   },
 });
 

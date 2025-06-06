@@ -1,13 +1,52 @@
+// frontend/src/pages/MoviePage/MoviePage.jsx
+
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './MoviePage.css';
+
+/**
+ * Lit le tableau “favorites” dans l’objet “user” stocké en localStorage.
+ * Renvoie un tableau d’IDs (string[]).
+ */
+function getUserFavorites() {
+  try {
+    const stored = localStorage.getItem('user');
+    if (!stored) return [];
+    const parsed = JSON.parse(stored);
+    return Array.isArray(parsed.favorites) ? parsed.favorites : [];
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Ajoute l’ID du film dans “user.favorites” en localStorage si pas déjà présent.
+ * Retourne le tableau mis à jour.
+ */
+function addUserFavorite(movieId) {
+  try {
+    const stored = localStorage.getItem('user');
+    if (!stored) return [];
+    const parsed = JSON.parse(stored);
+    const favs = Array.isArray(parsed.favorites) ? [...parsed.favorites] : [];
+    if (!favs.map(String).includes(String(movieId))) {
+      favs.push(String(movieId));
+      const updatedUser = { ...parsed, favorites: favs };
+      localStorage.setItem('user', JSON.stringify(updatedUser));
+    }
+    return favs;
+  } catch {
+    return [];
+  }
+}
 
 function MoviePage() {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isFavorited, setIsFavorited] = useState(false);
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -34,6 +73,22 @@ function MoviePage() {
     fetchMovie();
   }, [id]);
 
+  useEffect(() => {
+    // Vérifier si ce film est déjà dans “favorites” de l’utilisateur stocké
+    const favIds = getUserFavorites();
+    if (favIds.map(String).includes(String(id))) {
+      setIsFavorited(true);
+    }
+  }, [id]);
+
+  const handleAddFavorite = () => {
+    const favs = addUserFavorite(id);
+    if (favs.map(String).includes(String(id))) {
+      setIsFavorited(true);
+      alert('Film ajouté aux favoris !');
+    }
+  };
+
   if (loading) {
     return <p>Chargement...</p>;
   }
@@ -55,6 +110,14 @@ function MoviePage() {
         {movie.genres?.map((genre) => genre.name).join(' • ')}
       </p>
       <p className="movie-synopsis">{movie.overview}</p>
+
+      <button
+        className={`favorite-button ${isFavorited ? 'favorited' : ''}`}
+        onClick={handleAddFavorite}
+        disabled={isFavorited}
+      >
+        {isFavorited ? '✓ Favori' : 'Ajouter aux favoris'}
+      </button>
     </div>
   );
 }
