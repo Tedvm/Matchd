@@ -4,7 +4,7 @@ import './Navbar.css';
 import { useSearch } from '../../context/SearchContext';
 
 const ICONS = {
-  match: '/assets/match.png',
+  match: '/assets/match2.png',
   user: '/assets/user.png',
   home: '/assets/typo.png',
   search: '/assets/recherche.png',

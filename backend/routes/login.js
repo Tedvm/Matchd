@@ -23,6 +23,7 @@ router.post('/', async (req, res) => {
       email: user.email,
       firstname: user.firstname,
       lastname: user.lastname,
+      favorites: user.favorites,
     });
   } catch (err) {
     console.error('Login error:', err);

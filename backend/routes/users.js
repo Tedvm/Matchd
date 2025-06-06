@@ -20,6 +20,8 @@ router.post('/new', function (req, res) {
     firstname: req.body.firstname,
     lastname: req.body.lastname,
     password: req.body.password,
+    favorites: req.body.favorites || [],
+    vus: req.body.vus || [],
   });
 
   userRepository
@@ -40,6 +42,37 @@ router.post('/new', function (req, res) {
         res.status(500).json({ message: 'Error while creating the user' });
       }
     });
+});
+
+router.patch('/:userId/favorites', async (req, res) => {
+  const userId = parseInt(req.params.userId, 10);
+  const newFavorites = Array.isArray(req.body.favorites) ? req.body.favorites : [];
+
+  try {
+    const userRepository = appDataSource.getRepository(User);
+
+    // On récupère d'abord l'utilisateur pour vérifier qu'il existe
+    const user = await userRepository.findOneBy({ id: userId });
+    if (!user) {
+      return res.status(404).json({ message: 'Utilisateur non trouvé' });
+    }
+
+    // On remplace le champ favorites en base par newFavorites
+    user.favorites = newFavorites;
+    const savedUser = await userRepository.save(user);
+
+    // On renvoie l'utilisateur mis à jour (ou uniquement le champ favorites)
+    return res.json({ 
+      id: savedUser.id,
+      email: savedUser.email,
+      firstname: savedUser.firstname,
+      lastname: savedUser.lastname,
+      favorites: savedUser.favorites
+    });
+  } catch (error) {
+    console.error('Erreur update favorites:', error);
+    return res.status(500).json({ message: 'Impossible de mettre à jour les favoris' });
+  }
 });
 
 router.delete('/:userId', function (req, res) {

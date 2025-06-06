@@ -82,6 +82,13 @@ function MoviePage() {
   }, [id]);
 
   const handleAddFavorite = () => {
+    const userStored = localStorage.getItem('user');
+  
+    if (!userStored) {
+      alert("Vous n'êtes pas connecté(e) !");
+      return;
+    }
+  
     const favs = addUserFavorite(id);
     if (favs.map(String).includes(String(id))) {
       setIsFavorited(true);
