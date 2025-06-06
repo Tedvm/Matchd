@@ -3,15 +3,21 @@ import TinderCard from 'react-tinder-card';
 import axios from 'axios';
 import './SwipePage.css';
 
+const USER_ID = 1; // à adapter dynamiquement plus tard si besoin
+
 const SwipePage = () => {
   const [films, setFilms] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Charger les films recommandés depuis ton backend local
   useEffect(() => {
     const fetchFilms = async () => {
       try {
-        const res = await axios.get('/api/movies/recommend');
-        setFilms(res.data); // data = liste des films recommandés depuis DB
+        const res = await axios.get('/backend/recommendantion/callAPI', {
+          params: { userId: USER_ID },
+        });
+        console.log('Films reçus :', res.data); // ← ICI
+        setFilms(res.data);
       } catch (err) {
         console.error('Erreur chargement recommandations', err);
       }
@@ -20,20 +26,21 @@ const SwipePage = () => {
     fetchFilms();
   }, []);
 
-  const handleSwipe = async (direction) => {
+  // Enregistrer le like/dislike
+  const sendChoice = async (choice) => {
     const film = films[currentIndex];
     if (!film) {
       return;
     }
 
     try {
-      if (direction === 'right') {
-        await axios.post('/api/user/like', { filmId: film.id });
-      } else if (direction === 'left') {
-        await axios.post('/api/user/dislike', { filmId: film.id });
-      }
+      await axios.post('/api/user-choice', {
+        userId: USER_ID,
+        movieId: film.id,
+        choice,
+      });
     } catch (err) {
-      console.error('Erreur lors du like/dislike', err);
+      console.error(`Erreur lors du ${choice}`, err);
     }
 
     setCurrentIndex((prev) => prev + 1);
@@ -44,20 +51,29 @@ const SwipePage = () => {
   return (
     <div className="swipe-page">
       {film ? (
-        <TinderCard
-          key={film.id}
-          onSwipe={handleSwipe}
-          preventSwipe={['up', 'down']}
-        >
-          <div className="film-card">
-            <img
-              src={`https://image.tmdb.org/t/p/w300${film.poster_path}`}
-              alt={film.title}
-            />
-            <h2>{film.title}</h2>
-            <p>{film.overview}</p>
+        <>
+          <TinderCard key={film.id} preventSwipe={['up', 'down']}>
+            <div className="film-card">
+              <img
+                src={film.poster_url} // ✅ Utilise l'URL locale ou complète
+                alt={film.title}
+              />
+              <h2>{film.title}</h2>
+              <p>{film.overview}</p>
+            </div>
+          </TinderCard>
+          <div className="button-container">
+            <button
+              className="dislike-btn"
+              onClick={() => sendChoice('dislike')}
+            >
+              ❌
+            </button>
+            <button className="like-btn" onClick={() => sendChoice('like')}>
+              ❤️
+            </button>
           </div>
-        </TinderCard>
+        </>
       ) : (
         <p className="end-text">Plus de films à afficher 😢</p>
       )}
