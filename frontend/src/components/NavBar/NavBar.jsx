@@ -117,7 +117,7 @@ function Navbar() {
             setHoveredButton(null);
             inactivityTimeoutRef.current = setTimeout(resetSearchBar, 1000);
           }}
-          onClick={() => navigate('/autre')}
+          onClick={() => navigate('/swipe')} // ✅ ici le bon path
         >
           <img src={ICONS.match} alt="Swipe" className="navbar-icon" />
           {hoveredButton === 'match' && (

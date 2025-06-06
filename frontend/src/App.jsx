@@ -6,9 +6,10 @@ import Counter from './pages/Counter/Counter';
 import Users from './pages/Users/Users';
 import Navbar from './components/Navbar/Navbar';
 import SearchResults from './pages/SearchResults/SearchResults';
-import MoviePage from './pages/Movies/MoviePage'; // adapte le chemin si tu changes
+import MoviePage from './pages/Movies/MoviePage';
 import Login from './pages/Login/Login';
 import Account from './pages/Account/Account';
+import SwipePage from './pages/Swipe/SwipePage';
 
 function App() {
   console.log('App rendered !');
@@ -25,6 +26,7 @@ function App() {
         <Route path="/movie/:id" element={<MoviePage />} />
         <Route path="login" element={<Login />} />
         <Route path="account" element={<Account />} />
+        <Route path="/swipe" element={<SwipePage />} />
       </Routes>
     </Layout>
   );
