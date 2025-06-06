@@ -1,21 +1,8 @@
 import express from 'express';
-import { EntitySchema } from 'typeorm';
 import { AppDataSource } from '../appDataSource.js';
+import UserChoice from '../entities/choice.js';
 
 const router = express.Router();
-
-// Si tu n’as pas encore de schéma user_choices :
-const UserChoice = new EntitySchema({
-  name: 'UserChoice',
-  tableName: 'user_choices',
-  columns: {
-    id: { primary: true, type: Number, generated: true },
-    user_id: { type: Number },
-    movie_id: { type: Number },
-    choice: { type: String },
-  },
-  uniques: [{ columns: ['user_id', 'movie_id'] }],
-});
 
 // POST /api/user-choice
 router.post('/user-choice', async (req, res) => {

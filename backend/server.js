@@ -13,8 +13,9 @@ import userRouter from './routes/choice.js';
 
 appDataSource
   .initialize()
-  .then(() => {
+  .then(async () => {
     console.log('Data Source has been initialized!');
+
     const app = express();
 
     app.use(logger('dev'));
