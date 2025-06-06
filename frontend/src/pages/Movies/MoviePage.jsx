@@ -50,10 +50,9 @@ function MoviePage() {
       />
       <h1 className="movie-title">{movie.title}</h1>
       <p className="movie-details">
-        Sorti en {movie.release_date?.slice(0, 4)} • Note :{' '}
-        {movie.vote_average?.toFixed(1)} ⭐
+        {movie.release_date?.slice(0, 4)} - {movie.vote_average?.toFixed(1)} ⭐
         <br />
-        Genres : {movie.genres?.map((genre) => genre.name).join(', ')}
+        {movie.genres?.map((genre) => genre.name).join(' • ')}
       </p>
       <p className="movie-synopsis">{movie.overview}</p>
     </div>
