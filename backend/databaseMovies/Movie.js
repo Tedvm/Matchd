@@ -12,12 +12,12 @@ const Movie = new EntitySchema({
       type: String,
     },
     genre_ids: {
-        type: String,
-        nullable: true,
-        transformer: {
-            to: (value) => JSON.stringify(value),
-            from: (value) => JSON.parse(value),
-        },
+      type: String,
+      nullable: true,
+      transformer: {
+        to: (value) => JSON.stringify(value),
+        from: (value) => JSON.parse(value),
+      },
     },
     original_language: {
       type: String,
