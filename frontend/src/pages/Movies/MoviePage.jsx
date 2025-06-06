@@ -5,9 +5,10 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './MoviePage.css';
 
-// On lit la variable d’environnement (doit être défini après redémarrage Vite)
-const TMDB_API_KEY = import.meta.env.VITE_TMDB_API_KEY;
-
+/**
+ * Lit le tableau “favorites” dans l’objet “user” stocké en localStorage.
+ * Renvoie un tableau d’IDs (string[]).
+ */
 function getUserFavorites() {
   try {
     const stored = localStorage.getItem('user');
@@ -19,6 +20,10 @@ function getUserFavorites() {
   }
 }
 
+/**
+ * Ajoute l’ID du film dans “user.favorites” en localStorage si pas déjà présent.
+ * Retourne le tableau mis à jour.
+ */
 function addUserFavorite(movieId) {
   try {
     const stored = localStorage.getItem('user');
@@ -44,39 +49,32 @@ function MoviePage() {
   const [isFavorited, setIsFavorited] = useState(false);
 
   useEffect(() => {
-    // Afficher la clé dans la console pour debug
-    console.log('⇒ TMDB_API_KEY =', TMDB_API_KEY);
-
     const fetchMovie = async () => {
-      if (!TMDB_API_KEY) {
-        console.error('VITE_TMDB_API_KEY est manquante ou invalide.');
-        setError('Clé TMDB manquante');
-        setLoading(false);
-        return;
-      }
-
       try {
         const response = await axios.get(
-          `https://api.themoviedb.org/3/movie/${id}`,
+          `https://api.themoviedb.org/3/movie/${id}?language=fr-FR`,
           {
-            params: {
-              language: 'fr-FR',
-              api_key: TMDB_API_KEY,
+            headers: {
+              Authorization:
+                'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZjlmNjAwMzY4MzMzODNkNGIwYjNhNzJiODA3MzdjNCIsInN1YiI6IjY0NzA5YmE4YzVhZGE1MDBkZWU2ZTMxMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Em7Y9fSW94J91rbuKFjDWxmpWaQzTitxRKNdQ5Lh2Eo',
+              'Content-Type': 'application/json;charset=utf-8',
             },
           }
         );
         setMovie(response.data);
       } catch (err) {
         console.error(err);
-        setError('Film introuvable ou clé TMDB invalide');
+        setError('Film introuvable');
       } finally {
         setLoading(false);
       }
     };
+
     fetchMovie();
   }, [id]);
 
   useEffect(() => {
+    // Vérifier si ce film est déjà dans “favorites” de l’utilisateur stocké
     const favIds = getUserFavorites();
     if (favIds.map(String).includes(String(id))) {
       setIsFavorited(true);
@@ -91,8 +89,12 @@ function MoviePage() {
     }
   };
 
-  if (loading) return <p>Chargement...</p>;
-  if (error) return <p>{error}</p>;
+  if (loading) {
+    return <p>Chargement...</p>;
+  }
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
     <div className="movie-page">
