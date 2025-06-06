@@ -115,19 +115,16 @@ function Navbar() {
           }}
           onMouseLeave={() => {
             setHoveredButton(null);
-            inactivityTimeoutRef.current = setTimeout(resetSearchBar, 1000); // 1 secondes d'inactivité
+            inactivityTimeoutRef.current = setTimeout(resetSearchBar, 1000);
           }}
+          onClick={() => navigate('/autre')}
         >
-          <img
-            src={ICONS.match}
-            alt="Swipe / Match"
-            onClick={() => navigate('/autre')}
-            className="navbar-icon"
-          />
+          <img src={ICONS.match} alt="Swipe" className="navbar-icon" />
           {hoveredButton === 'match' && (
-            <span className="navbar-label">Swipe / Match</span>
+            <span className="navbar-label clickable-label">Swipe</span>
           )}
         </div>
+
         {/* Bouton Utilisateur */}
         <div
           className="navbar-item"
@@ -137,17 +134,13 @@ function Navbar() {
           }}
           onMouseLeave={() => {
             setHoveredButton(null);
-            inactivityTimeoutRef.current = setTimeout(resetSearchBar, 1000); // 1 secondes d'inactivité
+            inactivityTimeoutRef.current = setTimeout(resetSearchBar, 1000);
           }}
+          onClick={() => navigate('/users')}
         >
-          <img
-            src={ICONS.user}
-            alt="Utilisateur"
-            onClick={() => navigate('/users')}
-            className="navbar-icon"
-          />
+          <img src={ICONS.user} alt="Compte" className="navbar-icon" />
           {hoveredButton === 'user' && (
-            <span className="navbar-label">Utilisateur</span>
+            <span className="navbar-label clickable-label">Compte</span>
           )}
         </div>
       </div>
@@ -161,7 +154,7 @@ function Navbar() {
             <input
               type="text"
               className="search-input"
-              placeholder="Recherche..."
+              placeholder="Recherche Par Nom ..."
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
               onBlur={handleSearchBlur}
